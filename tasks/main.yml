@@ -1,0 +1,16 @@
+---
+- name: Install open-iscsi
+  apt:
+    name: open-iscsi
+
+- name: Set initiator name
+  template:
+    src: initiatorname.iscsi.j2
+    dest: /etc/iscsi/initiatorname.iscsi
+  notify: Restart iscsid
+
+- name: Configure iscsid
+  template:
+    src: iscsid.conf.j2
+    dest: /etc/iscsi/iscsid.conf
+  notify: Restart iscsid

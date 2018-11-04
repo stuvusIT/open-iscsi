@@ -1,0 +1,74 @@
+# {{ ansible_managed }}
+
+# Start iscsid once a tool needs access to it
+iscsid.startup = /usr/sbin/iscsid
+
+# manual or automatic startup
+iscsi.startup = {% if open_iscsi_automatic_startup %}automatic{% else %}manual{% endif %}
+
+
+# Login sequentially ("Yes") or in parallel ("No")
+node.leading_login = {% if open_iscsi_leading_login %}Yes{% else %}No{% endif %}
+
+
+{% if open_iscsi_authentication %}
+# Authentication to login into targets
+node.session.auth.authmethod = CHAP
+	{% if open_iscsi_auth_username is defined and open_iscsi_auth_password is defined -%}
+node.session.auth.username = {{ open_iscsi_auth_username }}
+node.session.auth.password = {{ open_iscsi_auth_password }}
+	{% endif %}
+	{% if open_iscsi_auth_username_in is defined and open_iscsi_auth_password_in is defined -%}
+node.session.auth.username_in = {{ open_iscsi_auth_username_in }}
+node.session.auth.password_in = {{ open_iscsi_auth_password_in }}
+	{% endif %}
+{% endif %}
+
+{% if open_iscsi_discovery_authentication %}
+# Authentication to discover targets
+discovery.sendtargets.auth.authmethod = CHAP
+	{% if open_iscsi_discovery_auth_username is defined and open_iscsi_discovery_auth_password is defined -%}
+discovery.sendtargets.auth.username = {{ open_iscsi_discovery_auth_username }}
+discovery.sendtargets.auth.password = {{ open_iscsi_discovery_auth_password }}
+	{% endif %}
+	{% if open_iscsi_discovery_auth_username_in is defined and open_iscsi_discovery_auth_password_in is defined -%}
+discovery.sendtargets.auth.username_in = {{ open_iscsi_discovery_auth_username_in }}
+discovery.sendtargets.auth.password_in = {{ open_iscsi_discovery_auth_password_in }}
+	{% endif %}
+{% endif %}
+
+# Timeouts
+node.session.timeo.replacement_timeout = {{ open_iscsi_replacement_timeout }}
+node.conn[0].timeo.login_timeout = {{ open_iscsi_login_timeout }}
+node.conn[0].timeo.logout_timeout = {{ open_iscsi_logout_timeout }}
+node.conn[0].timeo.noop_out_interval = {{ open_iscsi_noop_out_interval }}
+node.conn[0].timeo.noop_out_timeout = {{ open_iscsi_noop_out_timeout }}
+node.session.err_timeo.abort_timeout = {{ open_iscsi_abort_timeout }}
+node.session.err_timeo.lu_reset_timeout = {{ open_iscsi_lu_reset_timeout }}
+node.session.err_timeo.tgt_reset_timeout = {{ open_iscsi_tgt_reset_timeout }}
+
+# Retry
+node.session.initial_login_retry_max = {{ open_iscsi_initial_login_retry_max }}
+
+# Session and device queue depth
+node.session.cmds_max = {{ open_iscsi_cmds_max }}
+node.session.queue_depth = {{ open_iscsi_queue_depth }}
+
+# Misc system performance settings
+node.session.xmit_thread_priority = {{ open_iscsi_thread_priority }}
+
+# iSCSI settings
+node.session.iscsi.InitialR2T = {% if open_iscsi_initialR2T %}Yes{% else %}No{% endif %}
+
+node.session.iscsi.ImmediateData = {% if open_iscsi_immediate_data %}Yes{% else %}No{% endif %}
+
+node.session.iscsi.FirstBurstLength = {{ open_iscsi_first_burst_length }}
+node.session.iscsi.MaxBurstLength = {{ open_iscsi_max_burst_length }}
+node.conn[0].iscsi.MaxRecvDataSegmentLength = {{ open_iscsi_max_recv_length }}
+node.conn[0].iscsi.MaxXmitDataSegmentLength = {{ open_iscsi_max_xmit_length }}
+discovery.sendtargets.iscsi.MaxRecvDataSegmentLength = {{ open_iscsi_discovery_max_recv_length }}
+node.conn[0].iscsi.HeaderDigest = {{ open_iscsi_header_digest }}
+node.conn[0].iscsi.DataDigest = {{ open_iscsi_data_digest }}
+node.session.nr_sessions = {{ open_iscsi_nr_sessions }}
+node.session.iscsi.FastAbort = {% if open_iscsi_fast_abort %}Yes{% else %}No{% endif %}
+
