@@ -1,0 +1,6 @@
+---
+- name: Restart iscsid
+  service:
+    name: iscsid
+    state: restarted
+    enabled: True

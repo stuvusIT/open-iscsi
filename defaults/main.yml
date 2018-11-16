@@ -1,0 +1,31 @@
+---
+open_iscsi_automatic_startup: False
+open_iscsi_leading_login: False
+open_iscsi_authentication: False
+open_iscsi_discovery_authentication: False
+
+open_iscsi_replacement_timeout: 120
+open_iscsi_login_timeout: 15
+open_iscsi_logout_timeout: 15
+open_iscsi_noop_out_interval: 5
+open_iscsi_noop_out_timeout: 5
+open_iscsi_abort_timeout: 15
+open_iscsi_lu_reset_timeout: 30
+open_iscsi_tgt_reset_timeout: 30
+
+open_iscsi_initial_login_retry_max: 8
+open_iscsi_cmds_max: 128
+open_iscsi_queue_depth: 32
+open_iscsi_thread_priority: -20
+
+open_iscsi_initialR2T: False
+open_iscsi_immediate_data: True
+open_iscsi_first_burst_length: 262144
+open_iscsi_max_burst_length: 16776192
+open_iscsi_max_recv_length: 262144
+open_iscsi_max_xmit_length: 0
+open_iscsi_discovery_max_recv_length: 32768
+open_iscsi_header_digest: None
+open_iscsi_data_digest: None
+open_iscsi_nr_sessions: 1
+open_iscsi_fast_abort: True

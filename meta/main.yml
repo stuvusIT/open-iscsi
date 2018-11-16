@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Michel Weitbrecht
+  description: Installs and configures the open-iscsi initiator
+  company: stuvus (https://stuvus.uni-stuttgart.de)
+
+  license: CC-BY-SA
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+    - name: Debian
+      versions:
+        - stretch
+
+  galaxy_tags:
+    - storage
+    - open-iscsi
+    - iscsi
+    - initiator
+
+dependencies: []
