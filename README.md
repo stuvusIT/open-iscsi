@@ -4,7 +4,7 @@ This role installs and configures open-iscsi, an iSCSI initiator.
 
 ## Requirements
 
-Debian
+Any Debian based system should work, this role is tested on Debian 9.
 
 ## Role Variables
 
@@ -42,6 +42,7 @@ Debian
 ### Login authentication
 These login credentials for logging into targets are only used when `open_iscsi_authentication` is `True` and have to be defined in username/password pairs.
 You can choose to define one or both of the pairs.
+
 | Variable                      | Description                                                |
 |:------------------------------|:-----------------------------------------------------------|
 | `open_iscsi_auth_username`    | Username to authenticate at the target                     |
@@ -52,6 +53,7 @@ You can choose to define one or both of the pairs.
 ### Discovery authentication
 These login credentials for the discovery phase are only used when `open_iscsi_discovery_authentication` is `True` and have to be defined in username/password pairs.
 You can choose to define one or both of the pairs.
+
 | Variable                                | Description                                                |
 |:----------------------------------------|:-----------------------------------------------------------|
 | `open_iscsi_discovery_auth_username`    | Username to authenticate at the target                     |
@@ -72,8 +74,8 @@ E.g. `CRC32C,None` asks the target to check the digest, but does not enforce it.
   roles:
   - open_iscsi_authentication: True
     open_iscsi_initiator_name: 'iqn.2013-07.de.uni-stuttgart.stuvus.iscsi:hypervisor01'
-	open_iscsi_auth_username: hypervisor01
-	open_iscsi_auth_password: weef4IeYe0ahPahbe9oj1jia6leiv0jaigaanie1pes4biuB2u
+    open_iscsi_auth_username: hypervisor01
+    open_iscsi_auth_password: weef4IeYe0ahPahbe9oj1jia6leiv0jaigaanie1pes4biuB2u
 ```
 
 ## License
